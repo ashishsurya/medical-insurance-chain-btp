@@ -1,21 +1,26 @@
 import Link from 'next/link';
+import RegisterForm from '../components/RegisterForm';
 
 export default function RegisterPage() {
   return (
-    <div className='max-w-6xl flex h-screen text-white'>
-      <div
-        id='left-banner-login'
-        className='flex-[0.4] bg-primary flex flex-col justify-center items-center gap-16'
-      >
-        <h3 className='text-2xl font-bold'>
-          If you are already registered, to login <br />
-          <Link href={'/login'} passHref>
-            {' '}
-            <span className='underline text-center'>click here</span>
-          </Link>
-        </h3>
+    <div className='p-5 h-screen'>
+      <div className='flex  text-white  h-full  bg-white rounded-xl'>
+        <div
+          id='left-banner-login'
+          className='flex-1 bg-primary flex flex-col justify-center items-center gap-16 rounded-l-xl'
+        >
+          <p className=''>
+            If you are already having an account,
+            <br />
+            <span className='font-semibold text-4xl'>Welcome Back</span>
+            <br />
+            <Link href='/login'>Click here to login</Link>
+          </p>
+        </div>
+        <div id='right-register-container' className='flex-[2]'>
+          <RegisterForm />
+        </div>
       </div>
-      <div id='right-register-container' className='flex-[0.6]'></div>
     </div>
   );
 }
