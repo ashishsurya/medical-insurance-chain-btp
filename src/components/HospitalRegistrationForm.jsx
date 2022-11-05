@@ -33,10 +33,10 @@ const HospitalRegistrationForm = ({register, handleSubmit, registerUser}) => {
                 register={register}
                 formKey='address'
             />
-            <select className="p-2 border focus:border-primary border-2" {...register("hospitalType" , {required:true})}>
+            <select className="p-2 border focus:border-primary focus:border-2 rounded-xl" {...register("hospitalType" , {required:true})}>
                 <option value="government">Government</option>
                 <option value="private">Private</option>
-                <option value="government">Government</option>
+                <option value="semi-private">Semi Private</option>
 
             </select>
             <button
