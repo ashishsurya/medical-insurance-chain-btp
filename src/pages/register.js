@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import RegisterForm from '../components/RegisterForm';
+import RegistrationContainer from '../components/RegistrationContainer';
 
 export default function RegisterPage() {
   return (
@@ -18,7 +18,7 @@ export default function RegisterPage() {
           </p>
         </div>
         <div id='right-register-container' className='flex-[2]'>
-          <RegisterForm />
+          <RegistrationContainer />
         </div>
       </div>
     </div>
