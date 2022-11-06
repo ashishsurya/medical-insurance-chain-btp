@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form';
 import {
   MdPerson,
   MdOutlineEmail,
@@ -70,12 +69,7 @@ const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
         formKey='DOB'
         type='date'
       />
-      <button
-        type='submit'
-        className='bg-primary hover:bg-primary text-white p-3 font-medium rounded-xl'
-      >
-        Register
-      </button>
+      <input type="submit" value="Register" />
     </form>
   );
 };

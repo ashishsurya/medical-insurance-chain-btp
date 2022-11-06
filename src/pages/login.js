@@ -13,8 +13,16 @@ const LoginForm = () => {
   const {
     account: { isConnected, address },
   } = useAccount();
+
+
+  async function loginUser(e) {
+    // call an api and set tokens using localstorage
+    e.preventDefault();
+  }
+
+
   return (
-    <form className='flex bg-white flex-col space-y-3 w-1/2  p-8  justify-center'>
+    <form className='flex bg-white flex-col space-y-3 w-1/2  p-8  justify-center' onSubmit={loginUser}>
       <h2 className='text-primary font-bold tracking-tight text-3xl text-center'>
         Login to your account, at one go
       </h2>

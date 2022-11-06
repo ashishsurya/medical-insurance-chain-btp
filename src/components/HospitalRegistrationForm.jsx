@@ -39,12 +39,11 @@ const HospitalRegistrationForm = ({register, handleSubmit, registerUser}) => {
                 <option value="semi-private">Semi Private</option>
 
             </select>
-            <button
+            <input
                 type='submit'
-                className='bg-primary hover:bg-primary text-white p-3 font-medium rounded-xl'
-            >
-                Register
-            </button>
+                value="Register"
+            />
+                
         </form>
     )
 }
