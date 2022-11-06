@@ -1,9 +1,13 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import RegistrationContainer from '../components/RegistrationContainer';
 
 export default function RegisterPage() {
   return (
     <div className='p-5 h-screen'>
+      <Head>
+        <title>Register : Medical Insurance Chain</title>
+      </Head>
       <div className='flex  text-white  h-full  bg-white rounded-xl'>
         <div
           id='left-banner-login'

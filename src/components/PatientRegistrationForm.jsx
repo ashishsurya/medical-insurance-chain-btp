@@ -62,14 +62,22 @@ const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
           <Web3Button />
         </div>
       </div>
-      <CustomInput
-        label={'Date of Birth'}
-        Icon={FaBirthdayCake}
-        register={register}
-        formKey='DOB'
-        type='date'
-      />
-      <input type="submit" value="Register" />
+      <div className="flex space-x-3">
+        <CustomInput
+          label={'Date of Birth'}
+          Icon={FaBirthdayCake}
+          register={register}
+          formKey='DOB'
+          type='date'
+        />
+        <CustomInput
+          label={'Former Diseases'}
+          register={register}
+          formKey='formerDiseases'
+          placeholder="Ex . disease1, disease2, ....."
+        />
+      </div>
+      <input type='submit' value='Register' />
     </form>
   );
 };
