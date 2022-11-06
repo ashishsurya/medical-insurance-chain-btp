@@ -14,13 +14,14 @@ const RegisterForm = () => {
   console.log(address)
 
   const registerUser = (data) => {
-    console.log(data);
+    // make an api call to the backend and get the response back and respond based in the response.
   };
 
   return (
     <div className='text-black flex flex-col items-center py-4 '>
-      <h2 className='text-primary text-4xl font-bold'>Create Account</h2>
-      <div className='flex space-x-4 my-5'>
+      <h2 className='text-primary text-4xl font-bold '>Create Account</h2>
+      <p>and Secure the medical industry</p>
+      <div className='flex space-x-4 mt-5'>
         <CustomRadio
           label={'Patient'}
           name='user-type'
