@@ -6,10 +6,10 @@ export default function PatientStatusPage() {
     <PatientDashboardLayout>
       {/* list of patients insurances status */}
 
-      <div className=' flex flex-col items-center p-4  gap-5 h-full overflow-scroll no-scrollbar'>
-        <PatientPaymentStatusClaim />
-        <PatientPaymentStatusClaim />
-        <PatientPaymentStatusClaim />
+      <div className=' flex flex-col items-center p-4   gap-5 h-full overflow-scroll no-scrollbar'>
+        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusClaim status={"isOk"}/> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
         
       </div>
     </PatientDashboardLayout>

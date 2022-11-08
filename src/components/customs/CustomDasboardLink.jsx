@@ -7,7 +7,7 @@ const CustomDashboardLink = ({ href, label }) => {
   console.log(asPath)
   return (
     <Link href={href}>
-      <p className={`${isActiveLink ? "bg-white text-primary" :"bg-primary text-white"} px-3 py-2 border rounded-xl `}>{label}</p>
+      <p className={`${isActiveLink ? "bg-white text-primary font-semibold" :"bg-primary text-white"} px-3 py-2 border rounded-xl `}>{label}</p>
     </Link>
   );
 };
