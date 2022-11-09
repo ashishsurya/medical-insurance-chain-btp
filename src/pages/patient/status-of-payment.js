@@ -1,5 +1,5 @@
 import PatientDashboardLayout from '../../components/layouts/PatientDashboardLayout';
-import PatientPaymentStatusClaim from '../../components/PatientPaymentStatusClaim';
+import PatientPaymentStatusCard from '../../components/PatientPaymentStatusCard';
 
 export default function PatientStatusPage() {
   return (
@@ -7,27 +7,27 @@ export default function PatientStatusPage() {
       {/* list of patients insurances status */}
 
       <div className=' grid grid-cols-2 p-4   gap-5 h-full overflow-scroll no-scrollbar'>
-        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim status={'isOk'} />{' '}
+        <PatientPaymentStatusCard /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusCard status={'isOk'} />{' '}
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim />
+        <PatientPaymentStatusCard />
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim status={'isOk'} />{' '}
+        <PatientPaymentStatusCard /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusCard status={'isOk'} />{' '}
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim />
-        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim status={'isOk'} />{' '}
+        <PatientPaymentStatusCard />
+        <PatientPaymentStatusCard /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusCard status={'isOk'} />{' '}
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim />
-        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim status={'isOk'} />{' '}
+        <PatientPaymentStatusCard />
+        <PatientPaymentStatusCard /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusCard status={'isOk'} />{' '}
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim />
-        <PatientPaymentStatusClaim /> {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim status={'isOk'} />{' '}
+        <PatientPaymentStatusCard />
+        <PatientPaymentStatusCard /> {/* for now all values are hard-coded */}
+        <PatientPaymentStatusCard status={'isOk'} />{' '}
         {/* for now all values are hard-coded */}
-        <PatientPaymentStatusClaim />
+        <PatientPaymentStatusCard />
       </div>
     </PatientDashboardLayout>
   );

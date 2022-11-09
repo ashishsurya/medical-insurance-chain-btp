@@ -2,7 +2,7 @@ import React from 'react';
 import CustomStat from './customs/CustomStat';
 import StatusIndicator from './customs/StatusIndicator';
 
-const PatientPaymentStatusClaim = ({
+const PatientPaymentStatusCard = ({
   amountPaid,
   approvedHospital,
   policyNumber,
@@ -22,4 +22,4 @@ const PatientPaymentStatusClaim = ({
   );
 };
 
-export default PatientPaymentStatusClaim;
+export default PatientPaymentStatusCard;
