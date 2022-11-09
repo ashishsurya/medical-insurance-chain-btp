@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import CustomDashboardLink from '../customs/CustomDasboardLink';
+import ProfileCard from '../ProfileCard';
 
 const PatientDashboardLayout = (props) => {
   // authenticate using use effect.
@@ -16,7 +17,7 @@ const PatientDashboardLayout = (props) => {
       >
         <div
           id='side-navbar-patient'
-          className='flex-[0.2] bg-primary rounded-l-xl flex flex-col items-center py-5 space-y-4'
+          className='flex-[0.2] bg-primary rounded-l-xl flex flex-col items-center border py-5 space-y-4'
         >
           <Image
             src='/healthcare.svg'
@@ -25,16 +26,18 @@ const PatientDashboardLayout = (props) => {
             height={0}
             className='w-12 h-12'
           />
-          <CustomDashboardLink href={'/patient'} label='Register' />
-          <CustomDashboardLink href={'/patient/status-of-payment'} label='Status of Payment' />
+          <ProfileCard name={"Surya Ashish"}/>
+          <CustomDashboardLink href={'/patient'} label='Register to Policy' />
+          <CustomDashboardLink
+            href={'/patient/status-of-payment'}
+            label='Status of Payment'
+          />
           <CustomDashboardLink
             href={'/patient/claim-status'}
             label='Claim Status'
           />
         </div>
-        <div className='flex-[0.8]'>
-          {props.children}
-        </div>
+        <div className='flex-[0.8]'>{props.children}</div>
       </div>
     </div>
   );

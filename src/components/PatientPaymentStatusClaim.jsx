@@ -10,12 +10,14 @@ const PatientPaymentStatusClaim = ({
   amount,
 }) => {
   return (
-    <div className='bg-gray-200 p-6 rounded-xl shadow-lg grid grid-cols-2 gap-4'>
+    <div className='bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg grid grid-cols-2 gap-4'>
       <CustomStat label={'Amount Paid'} />
       <CustomStat label={'Approved Hospital'} />
       <CustomStat label={'Policy Number'} />
-      <button disabled={status === "isOk"} className='disabled:cursor-not-allowed self-center'>Renew : XXXXeth</button>
-      <StatusIndicator status={status}/>
+      <button disabled={status === 'isOk'} className='self-center'>
+        Renew : XXXXeth
+      </button>
+      <StatusIndicator status={status} />
     </div>
   );
 };

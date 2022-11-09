@@ -3,7 +3,7 @@ import PatientDashboardLayout from '../../components/layouts/PatientDashboardLay
 export default function PatientClaimStatusPage() {
   return (
     <PatientDashboardLayout>
-      <h1>Hello</h1>
+      <div></div>
     </PatientDashboardLayout>
   );
 }

@@ -11,7 +11,7 @@
     @apply border focus:outline-none focus:border-primary focus:border-2 
   }
   input[type="submit"],button {
-    @apply cursor-pointer uppercase font-semibold border-none focus:border-none hover:bg-opacity-90 bg-primary text-white p-2 rounded-xl
+    @apply cursor-pointer uppercase font-semibold border-none focus:border-none hover:bg-opacity-90 bg-primary text-white p-2 rounded-xl disabled:bg-gray-400 disabled:cursor-not-allowed
   }
 
   label {
