@@ -5,8 +5,8 @@ const CustomSelect = ({ label, values, register, formkey, Icon }) => {
   return (
     <div className='flex flex-col'>
       <label htmlFor={`${id}-${label}`} className='pb-2'>
-        <span className='pr-2'>
-          {Icon && <Icon className='w-5 h-5 inline-block ' />}
+        <span className=''>
+          {Icon && <Icon className='w-5 h-5 inline-block pr-2' />}
         </span>
         {label}
       </label>
