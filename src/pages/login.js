@@ -1,4 +1,4 @@
-import {  Web3Button } from '@web3modal/react';
+import { Web3Button } from '@web3modal/react';
 import Image from 'next/image';
 import { useAccount } from 'wagmi';
 
@@ -11,13 +11,11 @@ export default function LoginPage() {
 }
 
 const LoginForm = () => {
-  const {
-    isConnected,address
-  } = useAccount();
+  const { isConnected, address } = useAccount();
 
   async function loginUser(e) {
     // call an api and set tokens using localstorage
-    localStorage.setItem('userdata' , "data coming from server")
+    localStorage.setItem('userdata', 'data coming from server');
     e.preventDefault();
   }
 
