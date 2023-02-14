@@ -3,11 +3,11 @@ import CustomRadio from './customs/CustomRadio';
 import PatientRegistrationForm from './PatientRegistrationForm';
 import HospitalRegistrationForm from './HospitalRegistrationForm';
 import { useForm } from 'react-hook-form';
-import { useAccount } from '@web3modal/react';
+import { useAccount } from 'wagmi';
 
 const RegisterForm = () => {
   const [userType, setUserType] = useState('Patient');
-  const {account : {address}} = useAccount()
+  const {address} = useAccount()
   const patientForm = useForm();
   const hospitalForm = useForm();
 

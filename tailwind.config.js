@@ -10,7 +10,7 @@ module.exports = {
         primary: '#38B593',
       },
       fontFamily: {
-        'work-sans': "'Work Sans', sans-serif;",
+        inter: "'Inter', sans-serif;",
       },
     },
   },

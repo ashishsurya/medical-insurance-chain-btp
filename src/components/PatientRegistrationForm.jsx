@@ -7,11 +7,12 @@ import {
 } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import CustomInput from './customs/CustomInput';
-import { useAccount, Web3Button } from '@web3modal/react';
+import {  Web3Button } from '@web3modal/react';
+import { useAccount } from 'wagmi';
 
 const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
   const {
-    account: { address },
+    address
   } = useAccount();
   return (
     <form

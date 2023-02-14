@@ -1,5 +1,6 @@
-import { useAccount, Web3Button } from '@web3modal/react';
+import {  Web3Button } from '@web3modal/react';
 import Image from 'next/image';
+import { useAccount } from 'wagmi';
 
 export default function LoginPage() {
   return (
@@ -11,18 +12,20 @@ export default function LoginPage() {
 
 const LoginForm = () => {
   const {
-    account: { isConnected, address },
+    isConnected,address
   } = useAccount();
-
 
   async function loginUser(e) {
     // call an api and set tokens using localstorage
+    localStorage.setItem('userdata' , "data coming from server")
     e.preventDefault();
   }
 
-
   return (
-    <form className='flex bg-white flex-col space-y-3 w-1/2  p-8  justify-center' onSubmit={loginUser}>
+    <form
+      className='flex bg-white flex-col space-y-3 w-1/2  p-8  justify-center'
+      onSubmit={loginUser}
+    >
       <h2 className='text-primary font-bold tracking-tight text-3xl text-center'>
         Login to your account, at one go
       </h2>

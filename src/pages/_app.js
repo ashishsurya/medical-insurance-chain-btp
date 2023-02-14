@@ -1,27 +1,62 @@
 import '../globals.css';
 import { Web3Modal } from '@web3modal/react';
-import { providers, chains } from '@web3modal/ethereum';
+import {
+  EthereumClient,
+  modalConnectors,
+  providers,
+  walletConnectProvider,
+} from '@web3modal/ethereum';
+import { WagmiConfig, configureChains, createClient, mainnet } from 'wagmi';
+import {
+  arbitrum,
+  avalanche,
+  bsc,
+  fantom,
+  gnosis,
+  optimism,
+  polygon,
+} from '@wagmi/chains';
 
-const config = {
-  projectId: process.env.NEXT_PUBLIC_WEB3_MODAL_ID,
-  theme: 'dark',
-  accentColor: 'teal',
-  ethereum: {
-    appName: 'medical-insurance-chain',
-    chains: [chains.goerli, chains.polygonMumbai,],
-    providers: [
-      providers.walletConnectProvider({
-        projectId: process.env.NEXT_PUBLIC_WEB3_MODAL_ID,
-      }),
-    ],
-    autoConnect: true,
-  },
-};
+// 1. get project id
+const projectId = process.env.NEXT_PUBLIC_WEB3_MODAL_ID;
+
+// 2. configure wagmi client
+const chains = [
+  mainnet,
+  polygon,
+  avalanche,
+  arbitrum,
+  bsc,
+  optimism,
+  gnosis,
+  fantom,
+];
+const { provider } = configureChains(chains, [
+  walletConnectProvider({ projectId }),
+]);
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors: modalConnectors({
+    version: '1',
+    appName: 'web3Modal',
+    chains,
+    projectId,
+  }),
+  provider,
+});
+
+// 3. configure modal ethereum client
+const ethereumClient = new EthereumClient(wagmiClient, chains);
+
+// 4. Wrap the app with WagmiProvider and add <Web3Modal /> component.
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
-      <Web3Modal config={config} />
+      <WagmiConfig client={wagmiClient}>
+        <Component {...pageProps} />
+        <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      </WagmiConfig>
     </>
   );
 }
