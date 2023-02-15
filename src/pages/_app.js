@@ -17,6 +17,8 @@ import {
   optimism,
   polygon,
 } from '@wagmi/chains';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // 1. get project id
 const projectId = process.env.NEXT_PUBLIC_WEB3_MODAL_ID;
@@ -31,7 +33,7 @@ const chains = [
   optimism,
   gnosis,
   fantom,
-  goerli
+  goerli,
 ];
 const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId }),
@@ -59,6 +61,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       </WagmiConfig>
+      <ToastContainer />
     </>
   );
 }

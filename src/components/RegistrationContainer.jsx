@@ -18,6 +18,10 @@ const RegisterForm = () => {
 
   const registerPatient = async (data) => {
     const res = await registerPatientContract(hashMessage(`${data}`), address);
+    // TODO : store data in localstorage...
+
+    
+
     router.push('/patient');
   };
 
