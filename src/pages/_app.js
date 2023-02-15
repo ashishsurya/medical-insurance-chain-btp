@@ -13,6 +13,7 @@ import {
   bsc,
   fantom,
   gnosis,
+  goerli,
   optimism,
   polygon,
 } from '@wagmi/chains';
@@ -30,6 +31,7 @@ const chains = [
   optimism,
   gnosis,
   fantom,
+  goerli
 ];
 const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId }),

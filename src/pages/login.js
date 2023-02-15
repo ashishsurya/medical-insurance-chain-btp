@@ -1,6 +1,9 @@
 import { Web3Button } from '@web3modal/react';
 import Image from 'next/image';
 import { useAccount } from 'wagmi';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { useState } from 'react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   return (
@@ -12,11 +15,16 @@ export default function LoginPage() {
 
 const LoginForm = () => {
   const { isConnected, address } = useAccount();
+  const [loadingState, setLoadingState] = useState(false);
 
   async function loginUser(e) {
     // call an api and set tokens using localstorage
-    localStorage.setItem('userdata', 'data coming from server');
     e.preventDefault();
+    setLoadingState(true);
+    // TODO : Call the smart contract and get the users public hash and store them in 
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 2000);
   }
 
   return (
@@ -27,11 +35,11 @@ const LoginForm = () => {
       <h2 className='text-primary font-bold tracking-tight text-3xl text-center'>
         Login to your account, at one go
       </h2>
-      {!isConnected && (
+      {/* {!isConnected && (
         <p className='text-center text-gray-700'>
           Please connect your wallet, by clicking connect wallet button
         </p>
-      )}
+      )} */}
       <label htmlFor='wallet-address-input' className='text-lg font-semibold'>
         Wallet Address
       </label>
@@ -45,11 +53,19 @@ const LoginForm = () => {
         />
         <Web3Button />
       </div>
-      <input
+      <button
         type='submit'
-        value='Login'
         className='bg-primary text-white p-2 rounded-xl cursor-pointer'
-      />
+      >
+        {loadingState ? (
+          <ClipLoader loading={true} color='white' size={30} />
+        ) : (
+          'Login'
+        )}
+      </button>
+      <p className='text-sm'>
+        Don&apos;t have an account <Link href={'/register'}>Register Here</Link>
+      </p>
     </form>
   );
 };

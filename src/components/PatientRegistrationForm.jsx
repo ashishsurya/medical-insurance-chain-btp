@@ -7,13 +7,18 @@ import {
 } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import CustomInput from './customs/CustomInput';
-import {  Web3Button } from '@web3modal/react';
+import { Web3Button } from '@web3modal/react';
 import { useAccount } from 'wagmi';
+import { HiIdentification } from 'react-icons/hi';
+import { ClipLoader } from 'react-spinners';
 
-const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
-  const {
-    address
-  } = useAccount();
+const PatientRegistrationForm = ({
+  register,
+  handleSubmit,
+  registerUser,
+  loadingState,
+}) => {
+  const { address } = useAccount();
   return (
     <form
       className=' w-1/2 flex flex-col space-y-4 mt-4 h-full'
@@ -40,10 +45,10 @@ const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
         maxLength={10}
       />
       <CustomInput
-        label={'Address'}
-        Icon={MdHome}
+        label={'Aadhaar Number'}
+        Icon={HiIdentification}
         register={register}
-        formKey='address'
+        formKey='aadhaarNumber'
       />
       <div className='flex flex-col'>
         <label htmlFor='wallet-address' className=''>
@@ -63,7 +68,7 @@ const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
           <Web3Button />
         </div>
       </div>
-      <div className="flex space-x-3">
+      <div className='flex space-x-3'>
         <CustomInput
           label={'Date of Birth'}
           Icon={FaBirthdayCake}
@@ -75,10 +80,12 @@ const PatientRegistrationForm = ({ register, handleSubmit, registerUser }) => {
           label={'Former Diseases'}
           register={register}
           formKey='formerDiseases'
-          placeholder="Ex . disease1, disease2, ....."
+          placeholder='Ex . disease1, disease2, .....'
         />
       </div>
-      <input type='submit' value='Register' />
+      <button className='bg-primary text-white p-2 rounded-xl cursor-pointer' type='submit' value='Register'>
+        {loadingState ? <ClipLoader color='white' size={30} /> : 'Register'}
+      </button>
     </form>
   );
 };

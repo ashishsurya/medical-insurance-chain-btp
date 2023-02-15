@@ -4,17 +4,25 @@ import PatientRegistrationForm from './PatientRegistrationForm';
 import HospitalRegistrationForm from './HospitalRegistrationForm';
 import { useForm } from 'react-hook-form';
 import { useAccount } from 'wagmi';
+import { registerPatientContract } from '../../middlewares/registerPatientContract';
+import { hashMessage } from 'ethers/lib/utils.js';
+import { useRouter } from 'next/router';
 
 const RegisterForm = () => {
   const [userType, setUserType] = useState('Patient');
-  const {address} = useAccount()
+  const [loadingState, setLoadingState] = useState(false);
+  const { address } = useAccount();
   const patientForm = useForm();
   const hospitalForm = useForm();
+  const router = useRouter();
 
-  console.log(address)
+  const registerPatient = async (data) => {
+    const res = await registerPatientContract(hashMessage(`${data}`), address);
+    router.push('/patient');
+  };
 
-  const registerUser = (data) => {
-    // make an api call to the backend and get the response back and respond based in the response.
+  const registerHospital = (data) => {
+    // TODO : make an api call to the backend and get the response back and respond based in the response.
   };
 
   return (
@@ -39,13 +47,15 @@ const RegisterForm = () => {
         <PatientRegistrationForm
           register={patientForm.register}
           handleSubmit={patientForm.handleSubmit}
-          registerUser={registerUser}
+          registerUser={registerPatient}
+          loadingState={loadingState}
         />
       ) : userType === 'Hospital' ? (
         <HospitalRegistrationForm
           register={hospitalForm.register}
           handleSubmit={hospitalForm.handleSubmit}
-          registerUser={registerUser}
+          registerUser={registerHospital}
+          loadingState={loadingState}
         />
       ) : null}
     </div>
