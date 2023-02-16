@@ -5,7 +5,6 @@ import ProfileCard from '../ProfileCard';
 
 const PatientDashboardLayout = (props) => {
   // authenticate using use effect.
-  console.log(props);
   return (
     <div className='h-screen p-4'>
       <Head>
@@ -26,7 +25,7 @@ const PatientDashboardLayout = (props) => {
             height={0}
             className='w-12 h-12'
           />
-          <ProfileCard name={"Surya Ashish"}/>
+          <ProfileCard name={'Surya Ashish'} />
           <CustomDashboardLink href={'/patient'} label='Register to Policy' />
           <CustomDashboardLink
             href={'/patient/status-of-payment'}

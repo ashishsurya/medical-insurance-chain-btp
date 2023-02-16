@@ -7,6 +7,7 @@ import { useAccount } from 'wagmi';
 import { registerPatientContract } from '../../middlewares/registerPatientContract';
 import { hashMessage } from 'ethers/lib/utils.js';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
   const [userType, setUserType] = useState('Patient');
@@ -18,9 +19,16 @@ const RegisterForm = () => {
 
   const registerPatient = async (data) => {
     const res = await registerPatientContract(hashMessage(`${data}`), address);
-    // TODO : store data in localstorage...
 
-    
+    if (res === 'Something went wrong') {
+      toast('Something went wrong', {
+        position: 'top-right',
+        theme: 'colored',
+        type: 'error',
+      });
+    }
+
+    // TODO : store data in localstorage...
 
     router.push('/patient');
   };
