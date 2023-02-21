@@ -1,23 +1,41 @@
-import {  useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import PatientRegistrationForm from '../../components/PatientRegistrationForm';
 import RegisterLayout from '../../components/layouts/RegisterLayout';
 import { useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useAccount } from 'wagmi';
+import { createHash } from 'crypto';
+
+import { registerPatientContract } from '../../../middlewares/registerPatientContract';
+import { useRouter } from 'next/router';
 
 export default function PatientRegister({}) {
   const [loadingState, setLoadingState] = useState(false);
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
 
   async function registerUser(data) {
-    console.log(data);
     if (!isConnected) {
       toast('Connect Wallet', { type: 'error' });
     }
-    setLoadingState(true)
+    const { fullName, aadhaarNumber, dob } = data;
+    const hash =
+      '0x' +
+      createHash('sha256')
+        .update(`${fullName} ${aadhaarNumber} ${dob}`)
+        .digest('hex');
+    setLoadingState(true);
     // TODO : contact the registration smart contract.......
+    const res = await registerPatientContract(hash, address);
+    if (res === 'Something Went wrong....') {
+      toast('Not able to contact web3', { type: 'error' });
+      return;
+    } else {
+      localStorage.setItem('currUser', JSON.stringify(data));
+      router.replace('/patient');
+    }
   }
 
   return (

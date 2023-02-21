@@ -15,8 +15,11 @@ export default function LoginLayout({ children }) {
           <p className=''>
             Welcome Back
             <br />
-            <span className='font-semibold text-4xl'>Login to your account</span>
+            <span className='font-semibold text-4xl'>
+              Login to your account
+            </span>
             <br />
+            <Link href={'/register'}>Create Account</Link>
           </p>
         </div>
         <div id='right-register-container' className='flex-[2] p-4 text-black'>

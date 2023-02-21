@@ -1,22 +1,23 @@
-import { ethers } from 'ethers';
-import abi from './abi.json';
-import { toast } from 'react-toastify';
+import { Contract, ethers } from 'ethers';
+import RegisterPatientContract from './patientRegistrationContractConfig.json';
 
-export async function registerPatientContract(hash, patientAddress) {
-  var contractAddress =
-    process.env.NEXT_PUBLIC_PATIENT_REGISTRATION_SMART_CONTRACT_ADDRESS;
+export const registerPatientContract = async (hash , address) => {
+  
+  const contractAddress = RegisterPatientContract.address;
   const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
-
   await provider.send('eth_requestAccounts', []);
   const signer = provider.getSigner();
-  toast('Hello', { position: 'top-right', closeButton: true });
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+  const contract = new Contract(
+    contractAddress,
+    RegisterPatientContract.abi,
+    signer
+  );
   var data;
   try {
-    data = await contract.registerPatient(hash, patientAddress);
+    data = await contract.registerPatient(hash , address);
   } catch (e) {
-    return 'Something went wrong';
+    console.error(e);
+    return 'Something Went wrong....';
   }
-
   return data;
-}
+};
