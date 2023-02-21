@@ -55,8 +55,8 @@ const PatientDashboardLayout = (props) => {
             href={'/patient/claim-status'}
             label='Claim Status'
           />
-          <ConnectButton />
-          <button onClick={handleLogout}>Logout</button>
+          <ConnectButton chainStatus={'icon'} accountStatus={'avatar'} />
+          <button title='Logout' onClick={handleLogout}>Logout</button>
         </div>
         <div className='flex-[0.8]'>{props.children}</div>
       </div>
