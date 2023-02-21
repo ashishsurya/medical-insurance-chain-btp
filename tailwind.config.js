@@ -10,7 +10,7 @@ module.exports = {
         primary: '#38B593',
       },
       fontFamily: {
-        inter: "'Inter', sans-serif;",
+        lexend: "'Lexend', sans-serif;",
       },
     },
   },

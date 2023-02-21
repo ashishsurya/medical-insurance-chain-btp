@@ -2,9 +2,29 @@ import Head from 'next/head';
 import Image from 'next/image';
 import CustomDashboardLink from '../customs/CustomDasboardLink';
 import ProfileCard from '../ProfileCard';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const PatientDashboardLayout = (props) => {
+  const [currUser, setCurrUser] = useState();
+  const router = useRouter();
   // authenticate using use effect.
+
+  useEffect(() => {
+    // no curr user
+    if (!localStorage.getItem('currUser')) {
+      router.replace('/login/patient');
+    } else {
+      setCurrUser(JSON.parse(localStorage.getItem('currUser')));
+    }
+  }, [router]);
+
+  function handleLogout() {
+    localStorage.removeItem('currUser');
+    router.replace('/login/patient');
+  }
+
   return (
     <div className='h-screen p-4'>
       <Head>
@@ -25,7 +45,7 @@ const PatientDashboardLayout = (props) => {
             height={0}
             className='w-12 h-12'
           />
-          <ProfileCard name={'Surya Ashish'} />
+          <ProfileCard name={currUser?.fullName} />
           <CustomDashboardLink href={'/patient'} label='Register to Policy' />
           <CustomDashboardLink
             href={'/patient/status-of-payment'}
@@ -35,6 +55,8 @@ const PatientDashboardLayout = (props) => {
             href={'/patient/claim-status'}
             label='Claim Status'
           />
+          <ConnectButton chainStatus={'icon'} accountStatus={'avatar'} />
+          <button title='Logout' onClick={handleLogout}>Logout</button>
         </div>
         <div className='flex-[0.8]'>{props.children}</div>
       </div>

@@ -1,16 +1,6 @@
-import {
-  MdPerson,
-  MdOutlineEmail,
-  MdLocalPhone,
-  MdHome,
-  MdAccountBalanceWallet,
-} from 'react-icons/md';
-import { FaBirthdayCake } from 'react-icons/fa';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import CustomInput from './customs/CustomInput';
-import { Web3Button } from '@web3modal/react';
-import { useAccount } from 'wagmi';
-import { HiIdentification } from 'react-icons/hi';
-import { ClipLoader } from 'react-spinners';
+import Link from 'next/link';
 
 const PatientRegistrationForm = ({
   register,
@@ -18,75 +8,34 @@ const PatientRegistrationForm = ({
   registerUser,
   loadingState,
 }) => {
-  const { address } = useAccount();
   return (
-    <form
-      className=' w-1/2 flex flex-col space-y-4 mt-4 h-full'
-      onSubmit={handleSubmit(registerUser)}
-    >
-      <CustomInput
-        label={'Full Name'}
-        Icon={MdPerson}
-        register={register}
-        formKey='fullname'
-      />
-      <CustomInput
-        label={'Email'}
-        Icon={MdOutlineEmail}
-        register={register}
-        formKey='email'
-      />
-      <CustomInput
-        label={'Ph No'}
-        Icon={MdLocalPhone}
-        register={register}
-        formKey='phNo'
-        minLength={10}
-        maxLength={10}
-      />
-      <CustomInput
-        label={'Aadhaar Number'}
-        Icon={HiIdentification}
-        register={register}
-        formKey='aadhaarNumber'
-      />
-      <div className='flex flex-col'>
-        <label htmlFor='wallet-address' className=''>
-          <span className='inline-block'>
-            <MdAccountBalanceWallet className='w-6 h-6' />
-          </span>
-          Wallet Adress
-        </label>
-        <div className='flex space-x-2'>
-          <input
-            className='border p-2 flex-1 rounded-xl cursor-not-allowed'
-            type='text'
-            id='wallet-address'
-            value={address}
-            disabled
-          />
-          <Web3Button />
-        </div>
-      </div>
-      <div className='flex space-x-3'>
+    <div className='text-black'>
+      <form
+        className='flex space-y-4 flex-col m-5'
+        onSubmit={handleSubmit(registerUser)}
+      >
+        <CustomInput
+          label={'Full Name'}
+          formKey={'fullName'}
+          register={register}
+        />
         <CustomInput
           label={'Date of Birth'}
-          Icon={FaBirthdayCake}
+          formKey={'dob'}
+          type={'date'}
           register={register}
-          formKey='DOB'
-          type='date'
         />
         <CustomInput
-          label={'Former Diseases'}
+          label={'Aadhaar Number'}
+          formKey={'aadhaarNumber'}
           register={register}
-          formKey='formerDiseases'
-          placeholder='Ex . disease1, disease2, .....'
+          placeholder={"XXXX-XXXX-XXXX"}
         />
-      </div>
-      <button className='bg-primary text-white p-2 rounded-xl cursor-pointer' type='submit' value='Register'>
-        {loadingState ? <ClipLoader color='white' size={30} /> : 'Register'}
-      </button>
-    </form>
+        <ConnectButton label='Connect To Wallet' chainStatus={"full"} accountStatus={"full"} />
+        <p className='text-center text-sm text-gray-500'>Already having an account login <Link href={"/login/patient"}>here</Link></p>
+        <button>Register</button>
+      </form>
+    </div>
   );
 };
 
