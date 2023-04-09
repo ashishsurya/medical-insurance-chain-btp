@@ -3,12 +3,12 @@ import PatientRegistrationForm from '../../components/PatientRegistrationForm';
 import RegisterLayout from '../../components/layouts/RegisterLayout';
 import { useState } from 'react';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 import { useAccount } from 'wagmi';
 import { createHash } from 'crypto';
 
 import { registerPatientContract } from '../../../middlewares/registerPatientContract';
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 export default function PatientRegister({}) {
   const [loadingState, setLoadingState] = useState(false);
@@ -18,7 +18,8 @@ export default function PatientRegister({}) {
 
   async function registerUser(data) {
     if (!isConnected) {
-      toast('Connect Wallet', { type: 'error' });
+      toast.error('Connect to wallet before loggin in.');
+      return;
     }
     const { fullName, aadhaarNumber, dob } = data;
     const hash =
@@ -30,10 +31,12 @@ export default function PatientRegister({}) {
     // TODO : contact the registration smart contract.......
     const res = await registerPatientContract(hash, address);
     if (res === 'Something Went wrong....') {
-      toast('Not able to contact web3', { type: 'error' });
+      toast.error('Not able to contact web3');
       return;
     } else {
+      toast.success('Login successful');
       localStorage.setItem('currUser', JSON.stringify(data));
+      localStorage.setItem('userType', 'patient');
       router.replace('/patient');
     }
   }

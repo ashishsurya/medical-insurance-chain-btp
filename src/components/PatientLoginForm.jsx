@@ -2,25 +2,12 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import CustomInput from './customs/CustomInput';
 import Link from 'next/link';
-import { useAccount } from 'wagmi';
-import { fetchEnsName } from '@wagmi/core';
 
 export default function PatientLoginForm({
   register,
   handleSubmit,
   loginUser,
 }) {
-  const { address } = useAccount();
-
-  async function getEnsName() {
-    const ensName = await fetchEnsName({
-      address,
-    });
-
-    return ensName
-  }
-
-  getEnsName().then(x => console.log(x))
   return (
     <div className='text-black my-[100px]'>
       <form

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function RegisterLayout({ children }) {
+export default function RegisterLayout({ children, canLogin = true }) {
   return (
     <div className='p-5 h-screen'>
       <Head>
@@ -17,7 +17,7 @@ export default function RegisterLayout({ children }) {
             <br />
             <span className='font-semibold text-4xl'>Welcome Back</span>
             <br />
-            <Link href='/login'>Click here to login</Link>
+            {canLogin && <Link href='/login'>Click here to login</Link>}
           </p>
         </div>
         <div id='right-register-container' className='flex-[2] p-4 text-black'>

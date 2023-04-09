@@ -1,5 +1,5 @@
 import { Contract, ethers } from 'ethers';
-import RegisterPatientContract from './patientRegistrationContractConfig.json';
+import RegisterPatientContract from './abis/patientRegistrationContractConfig.json';
 
 export const registerPatientContract = async (hash , address) => {
   

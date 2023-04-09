@@ -3,13 +3,14 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { WagmiConfig, configureChains, createClient, mainnet } from 'wagmi';
 import { goerli } from '@wagmi/chains';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { publicProvider } from 'wagmi/providers/public';
 import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit';
+import { Toaster } from 'react-hot-toast';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 // 1. get project id
-const projectId = process.env.NEXT_PUBLIC_WEB3_MODAL_ID;
 
 // 2. configure wagmi client
 const { chains, provider } = configureChains([goerli], [publicProvider()]);
@@ -27,14 +28,14 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className={inter.className}>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
+          <Toaster position='top-center' />
           <Component {...pageProps} />
         </RainbowKitProvider>
       </WagmiConfig>
-      <ToastContainer />
-    </>
+    </div>
   );
 }
 

@@ -1,10 +1,23 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CustomDashboardLink from '../customs/CustomDasboardLink';
 import ProfileCard from '../ProfileCard';
+import { toast } from 'react-hot-toast';
 
 const HospitalDashboardLayout = (props) => {
+
+  useEffect(() => {
+    const currUser = localStorage.getItem('currUser');
+    const userType = localStorage.getItem('userType');
+    if (!(currUser && userType && userType === "hospital")) {
+      toast.error("Please login before proceeding.");
+    } else {
+    }
+
+  } , [])
+
+
   return (
     <div>
       <div className='h-screen p-4'>

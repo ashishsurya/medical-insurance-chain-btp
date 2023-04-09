@@ -4,8 +4,8 @@ import LoginLayout from '../../components/layouts/LoginLayout';
 import { useAccount } from 'wagmi';
 import { createHash } from 'crypto';
 import { loginPatientContract } from '../../../middlewares/loginPatientContract';
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 export default function PatientLoginPage() {
   const { isConnected } = useAccount();
@@ -14,7 +14,8 @@ export default function PatientLoginPage() {
   const { register, handleSubmit } = useForm();
   async function loginUser(data) {
     if (!isConnected) {
-      toast('Connect Wallet', { type: 'error' });
+      toast.error('Connect to a wallet before logging in.');
+      return;
     }
     const { fullName, aadhaarNumber, dob } = data;
     const hash =
@@ -26,12 +27,14 @@ export default function PatientLoginPage() {
     const res = await loginPatientContract(hash);
     console.log(res);
     if (res === 'Something Went wrong....') {
-      toast('Not able to contact web3', { type: 'error' });
+      toast.error('Not able to contact web3');
       return;
     } else if (res === '0x0000000000000000000000000000000000000000') {
-      toast('No account registered with following details', { type: 'info' });
+      toast('No account registered with following details', { icon: '👀' });
     } else {
+      toast.success('Login successful');
       localStorage.setItem('currUser', JSON.stringify(data));
+      localStorage.setItem('userType', 'patient');
       router.replace('/patient');
     }
   }

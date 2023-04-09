@@ -8,7 +8,7 @@ export default function Home() {
           MediBlock: Medical Insurance Blockchain
         </h2>
         <div className='grid grid-cols-3 self-stretch gap-5 place-items-center'>
-          <CategoryTile title={'Patient'} />
+          <Link href={"/login/patient"}><CategoryTile title={'Patient'} /></Link>
           <CategoryTile title={'Hospital'} />
           <CategoryTile title={'Insurance Co'} />
         </div>
@@ -19,7 +19,7 @@ export default function Home() {
 
 const CategoryTile = ({ title }) => {
   return (
-    <div className='bg-primary text-white font-medium w-52 h-52 flex items-center justify-center text-3xl rounded-lg' >
+    <div className='bg-primary text-white font-medium w-52 h-52 flex items-center justify-center text-3xl rounded-lg'>
       <h3>{title}</h3>
     </div>
   );

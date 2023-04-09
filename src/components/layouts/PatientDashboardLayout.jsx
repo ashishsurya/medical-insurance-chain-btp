@@ -5,6 +5,7 @@ import ProfileCard from '../ProfileCard';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { toast } from 'react-hot-toast';
 
 const PatientDashboardLayout = (props) => {
   const [currUser, setCurrUser] = useState();
@@ -13,7 +14,10 @@ const PatientDashboardLayout = (props) => {
 
   useEffect(() => {
     // no curr user
-    if (!localStorage.getItem('currUser')) {
+    const currUser = localStorage.getItem('currUser');
+    const userType = localStorage.getItem('userType');
+    if (!(currUser && userType && userType === 'patient')) {
+      toast('Please login before proceeding.');
       router.replace('/login/patient');
     } else {
       setCurrUser(JSON.parse(localStorage.getItem('currUser')));
@@ -22,6 +26,8 @@ const PatientDashboardLayout = (props) => {
 
   function handleLogout() {
     localStorage.removeItem('currUser');
+    localStorage.removeItem('userType');
+    toast.success('Logged out successfully');
     router.replace('/login/patient');
   }
 
@@ -56,7 +62,9 @@ const PatientDashboardLayout = (props) => {
             label='Claim Status'
           />
           <ConnectButton chainStatus={'icon'} accountStatus={'avatar'} />
-          <button title='Logout' onClick={handleLogout}>Logout</button>
+          <button title='Logout' onClick={handleLogout}>
+            Logout
+          </button>
         </div>
         <div className='flex-[0.8]'>{props.children}</div>
       </div>
