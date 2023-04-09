@@ -4,6 +4,7 @@
 
 @layer base {
   body {
+    @apply bg-[#eee]
   }
   input {
     @apply border focus:outline-none focus:ring-4 ring-teal-400;

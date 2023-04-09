@@ -28,7 +28,7 @@ const PatientDashboardLayout = (props) => {
     localStorage.removeItem('currUser');
     localStorage.removeItem('userType');
     toast.success('Logged out successfully');
-    router.replace('/login/patient');
+    router.replace('/login');
   }
 
   return (
