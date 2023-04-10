@@ -5,6 +5,7 @@ import LoginSwitch from '../../components/LoginSwitch';
 import HospitalLoginForm from '../../components/forms/HospitalLoginForm';
 import PatientLoginForm from '../../components/forms/PatientLoginForm';
 import InsuranceLoginForm from '../../components/forms/InsuranceLoginForm';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const currAuthParty = useRecoilValue(loginSwitchAtom);
@@ -21,6 +22,9 @@ export default function LoginPage() {
         {currAuthParty === 'Patient' && <PatientLoginForm />}
         {currAuthParty === 'Hospital' && <HospitalLoginForm />}
         {currAuthParty === 'InsuranceCompany' && <InsuranceLoginForm />}
+        <Link href={'/register'} className='text-primary'>
+          New user create account here
+        </Link>
       </div>
     </div>
   );

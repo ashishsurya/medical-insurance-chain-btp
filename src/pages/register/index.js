@@ -3,6 +3,9 @@ import LoginSwitch from '../../components/LoginSwitch';
 import { useRecoilValue } from 'recoil';
 import { loginSwitchAtom } from '../../atoms/loginSwitchAtom';
 import PatientRegisterForm from '../../components/forms/PatientRegisterForm';
+import HospitalRegistration from '../../components/forms/HospitalRegistrationForm';
+import InsuranceCompanyRegistrationForm from '../../components/forms/InsuranceCompanyRegistrationForm';
+import Link from 'next/link';
 
 export default function RegisterPage() {
   const currAuthParty = useRecoilValue(loginSwitchAtom);
@@ -17,6 +20,11 @@ export default function RegisterPage() {
         </h2>
         <LoginSwitch />
         {currAuthParty === 'Patient' && <PatientRegisterForm />}
+        {currAuthParty === 'Hospital' && <HospitalRegistration />}
+        {currAuthParty === 'InsuranceCompany' && (
+          <InsuranceCompanyRegistrationForm />
+        )}
+        <Link href={"/login"} className='text-primary'>Already registered login here.</Link>
       </div>
     </div>
   );

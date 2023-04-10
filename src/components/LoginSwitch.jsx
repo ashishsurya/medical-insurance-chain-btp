@@ -22,8 +22,6 @@ export default function LoginSwitch() {
     [setCurrAuthParty]
   );
 
-  console.log(isHospital, isPatient, isInsuranceCompany);
-
   return (
     <div className='flex items-center space-x-3 bg-[#ddd] text-sm p-2 rounded-lg duration-200 transition-all'>
       <p

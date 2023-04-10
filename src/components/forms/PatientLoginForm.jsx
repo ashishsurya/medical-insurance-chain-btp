@@ -6,9 +6,14 @@ import { toast } from 'react-hot-toast';
 import { useAccount } from 'wagmi';
 import { createHash } from 'crypto';
 import { loginPatientContract } from '../../../middlewares/loginPatientContract';
+import { ErrorMessage } from '@hookform/error-message';
 
 const PatientLoginForm = () => {
-  const { register, handleSubmit  , } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { isConnected } = useAccount();
   const router = useRouter();
 
@@ -17,6 +22,8 @@ const PatientLoginForm = () => {
       toast.error('Connect to a wallet before logging in.');
       return;
     }
+    console.log(errors);
+
     const { name, aadhaarNumber, dob } = data;
     const hash =
       '0x' +
@@ -48,20 +55,56 @@ const PatientLoginForm = () => {
         type='text'
         placeholder='Enter patient name....'
         className='w-full px-4 py-2'
-        {...register('name', { required: true })}
+        {...register('name', { required: 'Patient name required' })}
+      />
+      <ErrorMessage
+        name='name'
+        errors={errors}
+        render={({ message }) => (
+          <p className='text-red-500 !-mt-[1px]'>{message}</p>
+        )}
       />
       <input
         type='date'
         placeholder='Enter patient DOB'
         className='w-full px-4 py-2'
-        {...register('dob', { required: true })}
+        {...register('dob', { required: 'DOB required' })}
+      />
+      <ErrorMessage
+        name='dob'
+        errors={errors}
+        render={({ message }) => (
+          <p className='text-red-500 !-mt-[1px]'>{message}</p>
+        )}
       />
       <p className='text-sm font-semibold tracking-tighter '>Aadhaar Number</p>
       <input
         type='text'
         placeholder='xxxx-xxxx-xxxx'
         className='w-full px-4 py-2'
-        {...register('aadhaarNumber', { required: true })}
+        {...register('aadhaarNumber', {
+          required: 'Aadhaar number required',
+          maxLength: {
+            value: 12,
+            message: 'Aadhaar number can only be 12 characters',
+          },
+          minLength: {
+            value: 12,
+            message: 'Aadhaar number can only be 12 characters',
+          },
+          // TODO : add regex for validation of aadhaar numbers.
+          // pattern: {
+          //   value: /^(d{4}s?){3}d{4}$/,
+          //   message: 'Aadhaar number is not valid',
+          // },
+        })}
+      />
+      <ErrorMessage
+        name='aadhaarNumber'
+        errors={errors}
+        render={({ message }) => (
+          <p className='text-red-500 !-mt-[1px]'>{message}</p>
+        )}
       />
       <ConnectButton />
       <button
