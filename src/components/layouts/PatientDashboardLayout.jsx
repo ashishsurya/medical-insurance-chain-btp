@@ -4,12 +4,14 @@ import CustomDashboardLink from '../customs/CustomDasboardLink';
 import ProfileCard from '../ProfileCard';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton, useAccountModal } from '@rainbow-me/rainbowkit';
 import { toast } from 'react-hot-toast';
+import { useAccount } from 'wagmi';
 
 const PatientDashboardLayout = (props) => {
   const [currUser, setCurrUser] = useState();
   const router = useRouter();
+
   // authenticate using use effect.
 
   useEffect(() => {
@@ -18,11 +20,13 @@ const PatientDashboardLayout = (props) => {
     const userType = localStorage.getItem('userType');
     if (!(currUser && userType && userType === 'patient')) {
       toast('Please login before proceeding.');
-      router.replace('/login/patient');
+      router.replace('/login');
     } else {
-      setCurrUser(JSON.parse(localStorage.getItem('currUser')));
+      setCurrUser(JSON.parse(currUser));
     }
   }, [router]);
+
+  useEffect(() => {});
 
   function handleLogout() {
     localStorage.removeItem('currUser');
@@ -51,7 +55,7 @@ const PatientDashboardLayout = (props) => {
             height={0}
             className='w-12 h-12'
           />
-          <ProfileCard name={currUser?.fullName} />
+          <ProfileCard name={currUser?.name} />
           <CustomDashboardLink href={'/patient'} label='Register to Policy' />
           <CustomDashboardLink
             href={'/patient/status-of-payment'}

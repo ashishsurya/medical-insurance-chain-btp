@@ -6,15 +6,17 @@ import ProfileCard from '../ProfileCard';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
-const HospitalDashboardLayout = ({children}) => {
+const InsuranceDashboardLayout = ({ children }) => {
   const router = useRouter();
+
   useEffect(() => {
     const currUser = localStorage.getItem('currUser');
     const userType = localStorage.getItem('userType');
-    // if (!(currUser && userType && userType === 'hospital')) {
-    //   toast.error('Please login before proceeding.');
-    // } else {
-    // }
+    if (!(currUser && userType && userType === 'insurance')) {
+      toast.error('Please login before proceeding.');
+    } else {
+      
+    }
   }, []);
 
   const handleLogout = useCallback(() => {
@@ -45,21 +47,18 @@ const HospitalDashboardLayout = ({children}) => {
               className='w-12 h-12'
             />
             <ProfileCard name={'Surya Ashish'} />
-            <CustomDashboardLink href={'/hospital'} label='Add New Patient +' />
+            <CustomDashboardLink href={'/insurance'} label='Add Hospital +' />
             <CustomDashboardLink
-              href={'/hospital/status-of-patients'}
-              label='Status of Patients'
+              href={'/insurance/add-patient'}
+              label='Add Patient'
             />
             <CustomDashboardLink
-              href={'/hospital/check-ups'}
-              label='Check Ups'
-            />
-            <CustomDashboardLink
-              href={'/hospital/approval-status'}
-              label='Approval Status'
+              href={'/insurance/insurance-claim'}
+              label='Insurance Claims'
             />
             <button onClick={handleLogout}>Logout</button>
           </div>
+
           <div className='flex-[0.8]'>{children}</div>
         </div>
       </div>
@@ -67,4 +66,4 @@ const HospitalDashboardLayout = ({children}) => {
   );
 };
 
-export default HospitalDashboardLayout;
+export default InsuranceDashboardLayout;

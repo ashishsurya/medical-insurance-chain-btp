@@ -3,20 +3,23 @@ import { loginSwitchAtom } from '../atoms/loginSwitchAtom';
 import { useCallback, useMemo } from 'react';
 
 export default function LoginSwitch() {
-  const [currLogin, setCurrentLogin] = useRecoilState(loginSwitchAtom);
+  const [currAuthParty, setCurrAuthParty] = useRecoilState(loginSwitchAtom);
 
-  const isHospital = useMemo(() => currLogin === 'Hospital', [currLogin]);
-  const isPatient = useMemo(() => currLogin === 'Patient', [currLogin]);
+  const isHospital = useMemo(
+    () => currAuthParty === 'Hospital',
+    [currAuthParty]
+  );
+  const isPatient = useMemo(() => currAuthParty === 'Patient', [currAuthParty]);
   const isInsuranceCompany = useMemo(
-    () => currLogin === 'InsuranceCompany',
-    [currLogin]
+    () => currAuthParty === 'InsuranceCompany',
+    [currAuthParty]
   );
 
   const handleLoginSwitch = useCallback(
     (party) => {
-      setCurrentLogin(party);
+      setCurrAuthParty(party);
     },
-    [setCurrentLogin]
+    [setCurrAuthParty]
   );
 
   console.log(isHospital, isPatient, isInsuranceCompany);
