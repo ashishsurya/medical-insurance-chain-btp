@@ -7,6 +7,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { Toaster } from 'react-hot-toast';
 import { Inter } from 'next/font/google';
+import { RecoilRoot } from 'recoil';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,12 +30,14 @@ const wagmiClient = createClient({
 function MyApp({ Component, pageProps }) {
   return (
     <div className={inter.className}>
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
-          <Toaster position='top-center' />
-          <Component {...pageProps} />
-        </RainbowKitProvider>
-      </WagmiConfig>
+      <RecoilRoot>
+        <WagmiConfig client={wagmiClient}>
+          <RainbowKitProvider chains={chains}>
+            <Toaster position='top-center' />
+            <Component {...pageProps} />
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </RecoilRoot>
     </div>
   );
 }
