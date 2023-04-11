@@ -67,7 +67,7 @@ const PatientDashboardLayout = (props) => {
             Logout
           </button>
         </div>
-        <div className='flex-[0.8]'>{props.children}</div>
+        <div className='flex-[0.8] overflow-y-scroll'>{props.children}</div>
       </div>
     </div>
   );

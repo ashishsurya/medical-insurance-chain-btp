@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#eee]
+    @apply bg-[#eee];
   }
   input {
     @apply border focus:outline-none focus:ring-4 ring-teal-400;
@@ -20,10 +20,6 @@
 
   select {
     @apply p-2 border focus:border-primary focus:border-2 rounded-xl;
-  }
-
-  a {
-    @apply hover:underline;
   }
 
   h1,

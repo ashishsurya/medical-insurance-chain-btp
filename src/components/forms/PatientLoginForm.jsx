@@ -30,7 +30,6 @@ const PatientLoginForm = () => {
       createHash('sha256')
         .update(`${name} ${aadhaarNumber} ${dob}`)
         .digest('hex');
-    // TODO : contact the login smart contract.......
     const res = await loginPatientContract(hash);
     console.log(res);
     if (res === 'Something Went wrong....') {
