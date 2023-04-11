@@ -2,7 +2,7 @@ import '../globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
 import { WagmiConfig, configureChains, createClient, mainnet } from 'wagmi';
-import { goerli } from '@wagmi/chains';
+import { polygonMumbai } from '@wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { Toaster } from 'react-hot-toast';
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 // 1. get project id
 
 // 2. configure wagmi client
-const { chains, provider } = configureChains([goerli], [publicProvider()]);
+const { chains, provider } = configureChains([polygonMumbai], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: 'Rainbow Kit App',
