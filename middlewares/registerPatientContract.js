@@ -1,8 +1,8 @@
 import { Contract, ethers } from 'ethers';
 import RegisterPatientContract from './abis/patientRegistrationContractConfig.json';
 
-export const registerPatientContract = async (hash , address) => {
-  
+export const registerPatientContract = async (hash, address) => {
+  console.log(hash)
   const contractAddress = RegisterPatientContract.address;
   const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
   await provider.send('eth_requestAccounts', []);
@@ -14,7 +14,7 @@ export const registerPatientContract = async (hash , address) => {
   );
   var data;
   try {
-    data = await contract.registerPatient(hash , address);
+    data = await contract.registerPatient(hash, address);
   } catch (e) {
     console.error(e);
     return 'Something Went wrong....';
