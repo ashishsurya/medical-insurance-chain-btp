@@ -57,10 +57,7 @@ const PatientDashboardLayout = (props) => {
           />
           <ProfileCard name={currUser?.name} />
           <CustomDashboardLink href={'/patient'} label='Register to Policy' />
-          <CustomDashboardLink
-            href={'/patient/status-of-payment'}
-            label='Status of Payment'
-          />
+
           <CustomDashboardLink
             href={'/patient/claim-status'}
             label='Claim Status'

@@ -38,7 +38,7 @@ export default function RegisterPatient() {
       <div className='flex items-center justify-center h-full'>
         <div className=' w-1/2'>
           <h2 className='font-bold text-center tracking-tighter text-4xl text-primary my-8'>
-            Register to a new Insurance Policy
+            Register for an Insurance Policy
           </h2>
           <div
             className='flex flex-col space-y-3'
@@ -63,16 +63,19 @@ export default function RegisterPatient() {
                 ))}
               </select>
             </div>
+            <hr />
             <div className='flex flex-col '>
-              <label htmlFor='policyname'>Policy Cost</label>
-              <p>{selectedPolicyCost} </p>
+              <p>
+                <span className='font-semibold  '>Policy Cost : </span>
+                {selectedPolicyCost}
+              </p>
             </div>
+            <hr />
             <p className='font-semibold'>
               List of hospitals for the selected policy
             </p>
-            <hr />
             {selectedPolicyHospitals.map((hosp) => (
-              <li key={hosp}>{hosp}</li>
+              <li key={hosp} className='pl-4'>{hosp}</li>
             ))}
             <button
               onClick={() => {
