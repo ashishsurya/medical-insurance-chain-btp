@@ -8,14 +8,14 @@ import { useRouter } from 'next/router';
 
 const HospitalDashboardLayout = ({children}) => {
   const router = useRouter();
-  useEffect(() => {
-    const currUser = localStorage.getItem('currUser');
-    const userType = localStorage.getItem('userType');
-    // if (!(currUser && userType && userType === 'hospital')) {
-    //   toast.error('Please login before proceeding.');
-    // } else {
-    // }
-  }, []);
+  // useEffect(() => {
+  //   const currUser = localStorage.getItem('currUser');
+  //   const userType = localStorage.getItem('userType');
+  //   // if (!(currUser && userType && userType === 'hospital')) {
+  //   //   toast.error('Please login before proceeding.');
+  //   // } else {
+  //   // }
+  // }, []);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('currUser');

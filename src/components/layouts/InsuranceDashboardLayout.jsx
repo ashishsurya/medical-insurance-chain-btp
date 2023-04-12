@@ -9,15 +9,15 @@ import { useRouter } from 'next/router';
 const InsuranceDashboardLayout = ({ children }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    const currUser = localStorage.getItem('currUser');
-    const userType = localStorage.getItem('userType');
-    if (!(currUser && userType && userType === 'insurance')) {
-      toast.error('Please login before proceeding.');
-    } else {
+  // useEffect(() => {
+  //   const currUser = localStorage.getItem('currUser');
+  //   const userType = localStorage.getItem('userType');
+  //   if (!(currUser && userType && userType === 'insurance')) {
+  //     toast.error('Please login before proceeding.');
+  //   } else {
       
-    }
-  }, []);
+  //   }
+  // }, []);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('currUser');
@@ -48,10 +48,7 @@ const InsuranceDashboardLayout = ({ children }) => {
             />
             <ProfileCard name={'Surya Ashish'} />
             <CustomDashboardLink href={'/insurance'} label='Add Hospital +' />
-            <CustomDashboardLink
-              href={'/insurance/add-patient'}
-              label='Add Patient'
-            />
+            
             <CustomDashboardLink
               href={'/insurance/insurance-claim'}
               label='Insurance Claims'

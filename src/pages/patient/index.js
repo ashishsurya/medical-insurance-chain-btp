@@ -2,43 +2,36 @@ import { useForm } from 'react-hook-form';
 import PatientDashboardLayout from '../../components/layouts/PatientDashboardLayout';
 import CustomInput from '../../components/customs/CustomInput';
 import CustomSelect from '../../components/customs/CustomSelect';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getInsuranceCompanyInfos } from '../../../middlewares/getInsuranceCompanyInfos';
-
-const fakeData = [
-  {
-    policyId: '1',
-    policyName: 'ABC Policy',
-    policyCost: 'abc ETH',
-    hospitals: ['ABC Hospital', 'James Hospital'],
-  },
-  {
-    policyId: '2',
-    policyName: 'XYZ Policy',
-    policyCost: 'xyz ETH',
-    hospitals: ["ST Rocky's Hospital", '24x7 Hospitals'],
-  },
-];
+import { insurancecompanies } from '../../../data/insurancecompany';
+import Spinner from '../../components/customs/Spinner';
+import { getMoney } from '../../../middlewares/getMoney';
 
 export default function RegisterPatient() {
-  const [policies, setPolicies] = useState(fakeData);
-  const [currPolicyId, setCurrPolicyId] = useState(policies[0].policyId);
-
-  const selectedPolicyCost = useMemo(() => {
-    return policies.find((policy) => policy.policyId === currPolicyId)
-      ?.policyCost;
-  }, [currPolicyId, policies]);
-
-  const selectedPolicyHospitals = useMemo(() => {
-    return policies.find((policy) => policy.policyId === currPolicyId)
-      .hospitals;
-  }, [currPolicyId, policies]);
+  const [currInsuranceId, setCurrInsuranceId] = useState();
+  const [loading, setLoading] = useState(false);
+  const [insuranceCompanies, setInsuranceCompanies] = useState();
+  const [insuranceCompanyHospitals, setInsuranceCompanyHospitals] = useState();
+  const [insuranceCompanyCost, setInsuranceCompanyCost] = useState();
 
   useEffect(() => {
-    const getICompanies = async () => await getInsuranceCompanyInfos();
+    setLoading(true);
+    setTimeout(() => {
+      setInsuranceCompanies(insurancecompanies);
+      setLoading(false);
+    }, 1500);
+  }, [insuranceCompanies, insuranceCompanyCost]);
 
-    getICompanies().then((data) => console.log(data));
-  }, []);
+  useEffect(() => {
+    if (insuranceCompanies && insuranceCompanies.length > 0) {
+      setCurrInsuranceId(insuranceCompanies[0].address);
+      setInsuranceCompanyHospitals(insuranceCompanies[0].hospitals);
+      setInsuranceCompanyCost(insuranceCompanies[0].price);
+    }
+  }, [insuranceCompanies]);
+
+  console.log(insuranceCompanies);
 
   return (
     <PatientDashboardLayout>
@@ -47,53 +40,59 @@ export default function RegisterPatient() {
           <h2 className='font-bold text-center tracking-tighter text-4xl text-primary my-8'>
             Register for an Insurance Policy
           </h2>
-          <div
-            className='flex flex-col space-y-3'
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <div className='flex flex-col '>
-              <label htmlFor='policyname'>Select a policy</label>
-              <select
-                className='mt-1'
-                id='policyname'
-                value={currPolicyId}
-                onChange={(e) => {
-                  setCurrPolicyId(e.target.value);
+          {loading ? (
+            <div className='flex items-center justify-center w-full h-full'>
+              <Spinner />
+            </div>
+          ) : (
+            <div className='flex flex-col space-y-3'>
+              <div className='flex flex-col '>
+                <label htmlFor='insurancecompany'>
+                  Select an insurance company
+                </label>
+                <select
+                  className='mt-1'
+                  id='insurancecompany'
+                  value={currInsuranceId}
+                  onChange={(e) => {
+                    setCurrInsuranceId(e.target.value);
+                  }}
+                >
+                  {insuranceCompanies?.map((insuranceCompany) => (
+                    <option
+                      value={insuranceCompany.address}
+                      key={insuranceCompany.address}
+                    >
+                      {insuranceCompany.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <hr />
+              <div className='flex flex-col '>
+                <p>
+                  <span className='font-semibold  '>Insurance Cost : </span>
+                  {insuranceCompanyCost}
+                </p>
+              </div>
+              <hr />
+              <p className='font-semibold'>
+                List of hospitals for the selected policy
+              </p>
+              {insuranceCompanyHospitals?.map((hosp) => (
+                <li key={hosp} className='pl-4'>
+                  {hosp}
+                </li>
+              ))}
+              <button
+                onClick={async () => {
+                  await getMoney(insuranceCompanyCost)
                 }}
               >
-                {fakeData.map((policy) => (
-                  <option value={policy.policyId} key={policy.policyId}>
-                    {policy.policyId} : {policy.policyName}
-                  </option>
-                ))}
-              </select>
+                Pay : {insuranceCompanyCost}
+              </button>
             </div>
-            <hr />
-            <div className='flex flex-col '>
-              <p>
-                <span className='font-semibold  '>Policy Cost : </span>
-                {selectedPolicyCost}
-              </p>
-            </div>
-            <hr />
-            <p className='font-semibold'>
-              List of hospitals for the selected policy
-            </p>
-            {selectedPolicyHospitals.map((hosp) => (
-              <li key={hosp} className='pl-4'>
-                {hosp}
-              </li>
-            ))}
-            <button
-              onClick={() => {
-                // TODO : to be implemented
-              }}
-            >
-              Pay : {selectedPolicyCost}
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </PatientDashboardLayout>

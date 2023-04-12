@@ -5,41 +5,20 @@ import { getTreatmentDetailsFromUser } from '../../../middlewares/getTreatmentDe
 import { generateHash } from '../../utils/generateHash';
 import { toast } from 'react-hot-toast';
 import Spinner from '../../components/customs/Spinner';
+import { treatments } from '../../../data/treatmentsdata';
 
 export default function PatientClaimStatusPage() {
-  const [insuranceClaims, setInsuranceClaims] = useState([]);
+  const [treatmentsData, setTreatmentsData] = useState();
   const [loading, setLoading] = useState(false);
 
   // loading all insurance claims of current user
   useEffect(() => {
     setLoading(true);
-    const currUser = JSON.parse(localStorage.getItem('currUser'));
-
-    const { name, aadhaarNumber, dob } = currUser;
-
-    const hash = generateHash(`${name} ${aadhaarNumber} ${dob}`);
-
-    const getInsuranceClaims = async () =>
-      await getTreatmentDetailsFromUser(hash);
-
-    getInsuranceClaims()
-      .then((data) => {
-        if (data === 'Something went wrong....') {
-          toast.error(data);
-        } else {
-          setInsuranceClaims(data);
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    setTimeout(() => {
+      setTreatmentsData(treatments);
+      setLoading(false);
+    }, 1500);
   }, []);
-
-
-  console.log(insuranceClaims)
 
   return (
     <PatientDashboardLayout>
@@ -51,12 +30,20 @@ export default function PatientClaimStatusPage() {
           <Spinner />
         </div>
       ) : (
-        <div className='grid grid-cols-2 gap-3 p-3'>
-          <PatientStatusClaimCard />
-          <PatientStatusClaimCard />
-          <PatientStatusClaimCard />
-          <PatientStatusClaimCard />
-          <PatientStatusClaimCard />
+        <div className='grid grid-cols-2 gap-3 p-3 pt-8'>
+          {treatmentsData &&
+            treatmentsData.map((treatmentData) => {
+              return (
+                <div
+                  className='grid border border-primary p-4 rounded-lg place-items-center'
+                  key={treatmentData.treatmentID}
+                >
+                  <p>Hospital Name :{treatmentData.hospitalName} </p>
+                  <p>Cost : {treatmentData.cost}</p>
+                  <p>Status : {treatmentData.status}</p>
+                </div>
+              );
+            })}
         </div>
       )}
     </PatientDashboardLayout>

@@ -90,6 +90,19 @@
     {
       "inputs": [
         {
+          "internalType": "uint64",
+          "name": "amount",
+          "type": "uint64"
+        }
+      ],
+      "name": "getMoney",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "hash",
           "type": "bytes32"
@@ -151,5 +164,5 @@
       "type": "function"
     }
   ],
-  "address": "0xFdAdA3f30A1Fa22E5B446a05Fb6bCB0c83B158dB"
+  "address": "0x9f77ef6B5d5E7Ff50c507E9FD303E79F11834140"
 }
