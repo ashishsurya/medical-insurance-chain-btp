@@ -1,44 +1,14 @@
-import { useForm } from 'react-hook-form';
-import CustomInput from '../../components/customs/CustomInput';
-import CustomSelect from '../../components/customs/CustomSelect';
+import HospitalPatientStatusCard from '../../components/HospitalPatientStatusCard';
 import HospitalDashboardLayout from '../../components/layouts/HospitalDashboardLayout';
 
-export default function NewPatientPage() {
-  const { register } = useForm();
-  
+export default function HospitalStatusOfPatientsPage() {
   return (
     <HospitalDashboardLayout>
-      <div className='flex items-center justify-center h-full  '>
-        <form className='w-1/2 flex flex-col space-y-3'>
-          <CustomInput
-            register={register}
-            label='Patient Id'
-            formKey={'pateintId'}
-          />
-          <CustomSelect
-            formkey={'typeOfDisease'}
-            label='Type of Disease'
-            values={['hereditary', 'infectious', 'deficiency', 'physiological']}
-            register={register}
-          />
-          <CustomSelect
-            formkey={'department'}
-            label='Department'
-            values={['hereditary', 'infectious', 'deficiency', 'physiological']}
-            register={register}
-          />
-          <CustomInput
-            register={register}
-            label='Symptoms'
-            formKey={'symptoms'}
-          />
-          <CustomInput
-            register={register}
-            label='Estimated Cost'
-            formKey={'estimatedCost'}
-          />
-          <input type='submit' value='Lock' />
-        </form>
+      <div className='grid grid-cols-2 p-3 gap-3'>
+        <HospitalPatientStatusCard />
+        <HospitalPatientStatusCard />
+        <HospitalPatientStatusCard />
+        <HospitalPatientStatusCard />
       </div>
     </HospitalDashboardLayout>
   );

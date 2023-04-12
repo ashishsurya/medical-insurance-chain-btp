@@ -1,0 +1,630 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "InsuranceCompanyOnboardLockPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "insuranceCompany",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "hospital",
+          "type": "address"
+        }
+      ],
+      "name": "addHospital",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "treatmentID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "medicalReportHash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "status",
+          "type": "string"
+        }
+      ],
+      "name": "addTreatment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "insuranceCompany",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "userHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addUserToInsuranceCompanyList",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "userWallet",
+          "type": "address"
+        }
+      ],
+      "name": "approveTreatment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "terms",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address[]",
+              "name": "hospitals",
+              "type": "address[]"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "userHashes",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct ICentralContract.InsuranceCompanyInfo",
+          "name": "info",
+          "type": "tuple"
+        },
+        {
+          "internalType": "address",
+          "name": "insuranceCompanyAddress",
+          "type": "address"
+        }
+      ],
+      "name": "deployInsuranceCompany",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "insuranceCompany",
+          "type": "address"
+        }
+      ],
+      "name": "getHospitals",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInsuranceCompanies",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInsuranceCompaniesInfos",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "terms",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address[]",
+              "name": "hospitals",
+              "type": "address[]"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "userHashes",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct ICentralContract.InsuranceCompanyInfo[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTreatmentDetailsFromInsuranceCompany",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getTreatmentDetailsFromUser",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "patientHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "treatmentID",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "medicalReportHash",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct ICentralContract.Treatment[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUserAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "insuranceCompanies",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "insuranceCompaniesSC",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "insuranceCompanyInfo",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "terms",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "insuranceCompanyTreatments",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "treatmentID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "medicalReportHash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "registerUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "insuranceCompany",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "treatmentID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "newStatus",
+          "type": "string"
+        }
+      ],
+      "name": "updateTreatment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "userMapping",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userTreatments",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "treatmentID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "medicalReportHash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "date",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "address": "0xB43A785F08f6Aaab0D4aF29417920794F36Ac485"
+}

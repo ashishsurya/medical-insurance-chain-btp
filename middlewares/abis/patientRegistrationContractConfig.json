@@ -65,6 +65,31 @@
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "insuranceCompany",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "userHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "enrollInsuranceCompany",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getInsuranceCompanyInfos",
+      "outputs": [],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "hash",
           "type": "bytes32"
@@ -78,6 +103,13 @@
           "type": "address"
         }
       ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "listInsuranceCompany",
+      "outputs": [],
       "stateMutability": "view",
       "type": "function"
     },
@@ -119,5 +151,5 @@
       "type": "function"
     }
   ],
-  "address": "0xA1891C908b44B0050D0260a2BCAa7051aD861718"
+  "address": "0xFdAdA3f30A1Fa22E5B446a05Fb6bCB0c83B158dB"
 }

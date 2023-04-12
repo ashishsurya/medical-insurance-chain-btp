@@ -3,6 +3,7 @@ import PatientDashboardLayout from '../../components/layouts/PatientDashboardLay
 import CustomInput from '../../components/customs/CustomInput';
 import CustomSelect from '../../components/customs/CustomSelect';
 import { useEffect, useMemo, useState } from 'react';
+import { getInsuranceCompanyInfos } from '../../../middlewares/getInsuranceCompanyInfos';
 
 const fakeData = [
   {
@@ -32,6 +33,12 @@ export default function RegisterPatient() {
     return policies.find((policy) => policy.policyId === currPolicyId)
       .hospitals;
   }, [currPolicyId, policies]);
+
+  useEffect(() => {
+    const getICompanies = async () => await getInsuranceCompanyInfos();
+
+    getICompanies().then((data) => console.log(data));
+  }, []);
 
   return (
     <PatientDashboardLayout>
@@ -75,7 +82,9 @@ export default function RegisterPatient() {
               List of hospitals for the selected policy
             </p>
             {selectedPolicyHospitals.map((hosp) => (
-              <li key={hosp} className='pl-4'>{hosp}</li>
+              <li key={hosp} className='pl-4'>
+                {hosp}
+              </li>
             ))}
             <button
               onClick={() => {

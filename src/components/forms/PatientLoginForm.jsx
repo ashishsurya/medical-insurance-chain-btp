@@ -4,9 +4,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useAccount } from 'wagmi';
-import { createHash } from 'crypto';
 import { loginPatientContract } from '../../../middlewares/loginPatientContract';
 import { ErrorMessage } from '@hookform/error-message';
+import { generateHash } from '../../utils/generateHash';
 
 const PatientLoginForm = () => {
   const {
@@ -25,11 +25,7 @@ const PatientLoginForm = () => {
     console.log(errors);
 
     const { name, aadhaarNumber, dob } = data;
-    const hash =
-      '0x' +
-      createHash('sha256')
-        .update(`${name} ${aadhaarNumber} ${dob}`)
-        .digest('hex');
+    const hash = generateHash(`${name} ${aadhaarNumber} ${dob}`);
     const res = await loginPatientContract(hash);
     console.log(res);
     if (res === 'Something Went wrong....') {

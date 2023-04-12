@@ -45,19 +45,8 @@ const HospitalDashboardLayout = ({children}) => {
               className='w-12 h-12'
             />
             <ProfileCard name={'Surya Ashish'} />
-            <CustomDashboardLink href={'/hospital'} label='Add New Patient +' />
-            <CustomDashboardLink
-              href={'/hospital/status-of-patients'}
-              label='Status of Patients'
-            />
-            <CustomDashboardLink
-              href={'/hospital/check-ups'}
-              label='Check Ups'
-            />
-            <CustomDashboardLink
-              href={'/hospital/approval-status'}
-              label='Approval Status'
-            />
+            <CustomDashboardLink href={'/hospital'} label='Status of treatments' />
+            
             <button onClick={handleLogout}>Logout</button>
           </div>
           <div className='flex-[0.8]'>{children}</div>
