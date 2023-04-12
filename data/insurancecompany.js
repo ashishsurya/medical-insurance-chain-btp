@@ -4,7 +4,7 @@ export const insurancecompanies = [
     "name": "Guardian Shield Insurance",
     "terms": "",
     "price": "1800",
-    "hospitals": ["dsjhvfvs"],
+    "hospitals": ["APJ Hspital"],
     "userHashes": []
   }
   

@@ -7,7 +7,17 @@ import Spinner from '../../components/customs/Spinner';
 export default function HospitalStatusOfPatientsPage() {
   const [hospitalTreatments, sethospitalTreatments] = useState();
   const [loading, setLoading] = useState(false);
-  const [inputvalue, setInputvalue] = useState('');
+
+  const updateStatus = (treatmentId,inputvalue) => {
+    sethospitalTreatments((prev) =>
+      prev.map((treatment) => {
+        if (treatment.treatmentId === treatmentId) {
+          return { ...treatment, status: inputvalue };
+        }
+        return treatment;
+      })
+    );
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -26,44 +36,56 @@ export default function HospitalStatusOfPatientsPage() {
       ) : (
         <div className='grid grid-cols-2 p-3 gap-3'>
           {hospitalTreatments &&
-            hospitalTreatments.map(
-              ({ treatmentId, status, cost, approved, patientId }) => (
-                <div
-                  className='grid border gap-5 border-primary p-4 rounded-lg place-items-center'
-                  key={treatmentId}
-                >
-                  <p className='text-ellipsis'>
-                    Patient Id : {patientId.substring(0, 5)}......
-                  </p>
-                  <p>Cost : {cost}</p>
-                  <p>Status : {status}</p>
-                  <p>Approved : {approved ? 'Yes' : 'No'}</p>
-                  <div className='flex '>
-                    <input
-                      type='text'
-                      value={inputvalue}
-                      onChange={(e) => setInputvalue(e.target.value)}
-                    />
-                    <button
-                      onClick={() => {
-                        sethospitalTreatments((prev) =>
-                          prev.map((treatment) => {
-                            if (treatment.treatmentId === treatmentId) {
-                              return { ...treatment, status: inputvalue };
-                            }
-                            return treatment;
-                          })
-                        );
-                      }}
-                    >
-                      Submit Status
-                    </button>
-                  </div>
-                </div>
-              )
-            )}
+            hospitalTreatments.map((treatment) => (
+              <StatuofPaymentComponent
+                key={treatment.treatmentId}
+                {...treatment}
+                updateStatus={updateStatus}
+              />
+            ))}
         </div>
       )}
     </HospitalDashboardLayout>
   );
 }
+
+const StatuofPaymentComponent = ({
+  treatmentId,
+  status,
+  cost,
+  approved,
+  patientId,
+  updateStatus,
+}) => {
+  const [inputvalue, setInputvalue] = useState('');
+
+  return (
+    <div
+      className='grid border gap-5 border-primary p-4 rounded-lg place-items-center'
+      key={treatmentId}
+    >
+      <p className='text-ellipsis'>
+        Patient Id : {patientId.substring(0, 5)}......
+      </p>
+      <p>Cost : {cost}</p>
+      <p>Status : {status}</p>
+      <p>Approved : {approved ? 'Yes' : 'No'}</p>
+      <div className='flex '>
+        <input
+          type='text'
+          value={inputvalue}
+          onChange={(e) => setInputvalue(e.target.value)}
+        />
+        <button
+          onClick={() => {
+            updateStatus(treatmentId, inputvalue);
+          }}
+        >
+          Submit Status
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// { treatmentId, status, cost, approved, patientId }
